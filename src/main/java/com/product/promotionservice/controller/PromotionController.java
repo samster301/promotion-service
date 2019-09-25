@@ -4,7 +4,6 @@ import com.product.promotionservice.entity.Promotion;
 import com.product.promotionservice.service.PromotionService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class PromotionController {
@@ -24,10 +22,9 @@ public class PromotionController {
         this.promotionService = promotionService;
     }
 
-    @GetMapping(value= "/products/swagger-ui.{rest}")
-    public ModelAndView redirectToSwagger(@PathVariable("rest") Optional<String> urlData, ModelMap modelMap){
-        String urld = "/swagger-ui."+urlData.get();
-        return new ModelAndView("redirect:/"+urld);
+    @GetMapping(value= "/products/promotions/swagger-ui")
+    public ModelAndView redirectToSwagger(){
+        return new ModelAndView("redirect:/swagger-ui.html");
     }
 
     @ApiOperation(value = "find all promotions", response = List.class)
